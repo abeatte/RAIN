@@ -2,6 +2,7 @@ package com.artbeatte.rain;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferStrategy;
 
 /**
  * @author art.beatte
@@ -42,8 +43,27 @@ public class Game extends Canvas implements Runnable {
     @Override
     public void run() {
         while (running) {
-            System.out.println("Running...");
+            update();
+            render();
         }
+    }
+
+    public void update() {
+
+    }
+
+    public void render() {
+        BufferStrategy bs = getBufferStrategy();
+        if (bs == null) {
+            createBufferStrategy(3);
+            return;
+        }
+
+        Graphics g = bs.getDrawGraphics();
+        g.setColor(Color.black);
+        g.fillRect(0, 0, getWidth(), getHeight());
+        g.dispose();
+        bs.show();
     }
 
     public static void main (String[] args) {
