@@ -23,7 +23,13 @@ public class Screen {
 
     public void render() {
         for (int y = 0; y < height; y++) {
+            if (y >= height) {
+                break;
+            }
             for (int x = 0; x < width; x++) {
+                if (x >= width) {
+                    break;
+                }
                 pixels[x + y * width] = 0xff00ff;
             }
         }
