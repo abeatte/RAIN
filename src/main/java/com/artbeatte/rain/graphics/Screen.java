@@ -1,5 +1,7 @@
 package com.artbeatte.rain.graphics;
 
+import java.util.Random;
+
 /**
  * @author art.beatte
  * @version 5/25/15
@@ -8,11 +10,19 @@ public class Screen {
 
     private int width, height;
     public int[] pixels;
+    public int[] tiles = new int[64 * 64];
+
+    private Random random = new Random();
 
     public Screen(int width, int height) {
         this.width = width;
         this.height = height;
         pixels = new int[width * height];
+
+        for (int i = 0; i < 64 * 64; i++) {
+            tiles[i] = random.nextInt(0xffffff);
+        }
+
     }
 
     public void clear() {
@@ -30,7 +40,9 @@ public class Screen {
                 if (x >= width || x < 0) {
                     break;
                 }
-                pixels[x + y * width] = 0xff00ff;
+                // same as:     (x / 16) + (y / 16) * 64;
+                int tileIndex = (x >> 4) + (y >> 4) * 64;
+                pixels[x + y * width] = tiles[tileIndex];
             }
         }
     }
