@@ -1,5 +1,7 @@
 package com.artbeatte.rain.entity.mob;
 
+import com.artbeatte.rain.graphics.Screen;
+import com.artbeatte.rain.graphics.Sprite;
 import com.artbeatte.rain.input.Keyboard;
 
 /**
@@ -9,6 +11,7 @@ import com.artbeatte.rain.input.Keyboard;
 public class Player extends Mob {
 
     private Keyboard input;
+
 
     public Player(Keyboard input) {
         this.input = input;
@@ -30,6 +33,7 @@ public class Player extends Mob {
         if (xa != 0 || ya != 0) move(xa, ya);
     }
 
-    public void render() {
+    public void render(Screen screen) {
+        screen.renderPlayer(x, y, Sprite.player0);
     }
 }
