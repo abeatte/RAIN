@@ -26,7 +26,7 @@ public class Level {
     protected void generateLevel() {
     }
 
-    private void loadLevel(String path) {
+    protected void loadLevel(String path) {
     }
 
     public void update() {
