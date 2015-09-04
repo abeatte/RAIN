@@ -4,7 +4,6 @@ import com.artbeatte.rain.entity.mob.Player;
 import com.artbeatte.rain.graphics.Screen;
 import com.artbeatte.rain.input.Keyboard;
 import com.artbeatte.rain.level.Level;
-import com.artbeatte.rain.level.RandomLevel;
 import com.artbeatte.rain.level.SpawnLevel;
 
 import javax.swing.*;
@@ -45,7 +44,7 @@ public class Game extends Canvas implements Runnable {
         frame = new JFrame();
         key = new Keyboard();
         level = new SpawnLevel("/textures/level.png");
-        player = new Player(key);
+        player = new Player(250, 100, key);
 
         addKeyListener(key);
     }
