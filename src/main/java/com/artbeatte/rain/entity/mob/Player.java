@@ -3,6 +3,7 @@ package com.artbeatte.rain.entity.mob;
 import com.artbeatte.rain.graphics.Screen;
 import com.artbeatte.rain.graphics.Sprite;
 import com.artbeatte.rain.input.Keyboard;
+import com.artbeatte.rain.input.Mouse;
 
 /**
  * @author art.beatte
@@ -41,6 +42,17 @@ public class Player extends Mob {
             walking = true;
         } else {
             walking = false;
+        }
+
+        updateShooting();
+    }
+
+    private void updateShooting() {
+        if (Mouse.getButton() == 1) {
+            double dx = Mouse.getX() - 300 / 2;
+            double dy = Mouse.getY() - 160 / 2;
+            double dir = Math.atan2(dy, dx);
+            shoot(x, y, dir);
         }
     }
 
