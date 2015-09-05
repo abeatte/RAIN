@@ -1,6 +1,7 @@
 package com.artbeatte.rain.entity.mob;
 
 import com.artbeatte.rain.Game;
+import com.artbeatte.rain.entity.projectile.Projectile;
 import com.artbeatte.rain.graphics.Screen;
 import com.artbeatte.rain.graphics.Sprite;
 import com.artbeatte.rain.input.Keyboard;
@@ -44,8 +45,15 @@ public class Player extends Mob {
         } else {
             walking = false;
         }
-
+        clear();
         updateShooting();
+    }
+
+    private void clear() {
+        for (int i = 0; i < projectiles.size(); i++) {
+            Projectile p = projectiles.get(i);
+            if (p.isRemoved()) projectiles.remove()
+        }
     }
 
     private void updateShooting() {
