@@ -1,5 +1,6 @@
 package com.artbeatte.rain.entity.mob;
 
+import com.artbeatte.rain.Game;
 import com.artbeatte.rain.graphics.Screen;
 import com.artbeatte.rain.graphics.Sprite;
 import com.artbeatte.rain.input.Keyboard;
@@ -49,8 +50,8 @@ public class Player extends Mob {
 
     private void updateShooting() {
         if (Mouse.getButton() == 1) {
-            double dx = Mouse.getX() - 300 / 2;
-            double dy = Mouse.getY() - 160 / 2;
+            double dx = Mouse.getX() - Game.getWidnowWidth() / 2;
+            double dy = Mouse.getY() - Game.getWindowHeight() / 2;
             double dir = Math.atan2(dy, dx);
             shoot(x, y, dir);
         }
