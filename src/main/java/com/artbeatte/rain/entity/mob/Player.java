@@ -2,6 +2,7 @@ package com.artbeatte.rain.entity.mob;
 
 import com.artbeatte.rain.Game;
 import com.artbeatte.rain.entity.projectile.Projectile;
+import com.artbeatte.rain.entity.projectile.WizardProjectile;
 import com.artbeatte.rain.graphics.Screen;
 import com.artbeatte.rain.graphics.Sprite;
 import com.artbeatte.rain.input.Keyboard;
@@ -18,6 +19,9 @@ public class Player extends Mob {
     private int anim = 0;
     private boolean walking = false;
 
+    Projectile p;
+    private int fireRate = 0;
+
     public Player(Keyboard input) {
         this.input = input;
         sprite = Sprite.player_forward;
@@ -28,9 +32,11 @@ public class Player extends Mob {
         this.y = y;
         this.input = input;
         sprite = Sprite.player_forward;
+        fireRate = WizardProjectile.FIRE_RATE;
     }
 
     public void update() {
+        if (fireRate > 0) fireRate--;
         int xa = 0, ya = 0;
         if (anim < 7500) anim++;
         else anim = 0;
@@ -57,11 +63,12 @@ public class Player extends Mob {
     }
 
     private void updateShooting() {
-        if (Mouse.getButton() == 1) {
+        if (Mouse.getButton() == 1 && fireRate <= 0) {
             double dx = Mouse.getX() - Game.getWidnowWidth() / 2;
             double dy = Mouse.getY() - Game.getWindowHeight() / 2;
             double dir = Math.atan2(dy, dx);
             shoot(x, y, dir);
+            fireRate = WizardProjectile.FIRE_RATE;
         }
     }
 
