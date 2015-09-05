@@ -3,6 +3,7 @@ package com.artbeatte.rain;
 import com.artbeatte.rain.entity.mob.Player;
 import com.artbeatte.rain.graphics.Screen;
 import com.artbeatte.rain.input.Keyboard;
+import com.artbeatte.rain.input.Mouse;
 import com.artbeatte.rain.level.Level;
 import com.artbeatte.rain.level.TileCoordinate;
 
@@ -47,7 +48,11 @@ public class Game extends Canvas implements Runnable {
         TileCoordinate playerSpawn = new TileCoordinate(19, 62);
         player = new Player(playerSpawn.x(), playerSpawn.y(), key);
         player.init(level);
+
+        Mouse mouse = new Mouse();
         addKeyListener(key);
+        addMouseListener(mouse);
+        addMouseMotionListener(mouse);
     }
 
     public synchronized void start() {
