@@ -19,7 +19,7 @@ public abstract class Mob extends Entity {
         if (ya > 0) dir = 2;
         if (ya < 0) dir = 0;
 
-        if (!collision()) {
+        if (!collision(xa, ya)) {
             this.x += xa;
             this.y += ya;
         }
@@ -28,8 +28,9 @@ public abstract class Mob extends Entity {
     public void update() {
     }
 
-    private boolean collision() {
-        return false;
+    private boolean collision(int xa, int ya) {
+        boolean solid = false;
+        return level.getTile((x + xa) / 16, (y + ya) / 16).solid();
     }
 
     public void render() {
