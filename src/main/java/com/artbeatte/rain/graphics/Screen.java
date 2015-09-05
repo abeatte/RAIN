@@ -1,5 +1,6 @@
 package com.artbeatte.rain.graphics;
 
+import com.artbeatte.rain.entity.projectile.Projectile;
 import com.artbeatte.rain.level.tile.Tile;
 
 import java.util.Random;
@@ -35,16 +36,31 @@ public class Screen {
         }
     }
 
-    public void renderTile(int xp, int yp, Sprite sprite) {
+    public void renderTile(int xp, int yp, Tile tile) {
         xp -= xOffset;
         yp -= yOffset;
-        for (int y = 0; y < sprite.SIZE; y ++) {
+        for (int y = 0; y < tile.sprite.SIZE; y ++) {
             int ya = y + yp;
-            for (int x = 0; x < sprite.SIZE; x ++) {
+            for (int x = 0; x < tile.sprite.SIZE; x ++) {
                 int xa = x + xp;
-                if (xa < -sprite.SIZE || xa >= width || ya < 0 || ya >= height) break;
+                if (xa < -tile.sprite.SIZE || xa >= width || ya < 0 || ya >= height) break;
                 if (xa <0) xa = 0;
-                pixels[xa + ya * width] = sprite.pixels[x + y * sprite.SIZE];
+                pixels[xa + ya * width] = tile.sprite.pixels[x + y * tile.sprite.SIZE];
+            }
+        }
+    }
+
+    public void renderProjectile(int xp, int yp, Projectile p) {
+        xp -= xOffset;
+        yp -= yOffset;
+        for (int y = 0; y < p.getSize(); y ++) {
+            int ya = y + yp;
+            for (int x = 0; x < p.getSize(); x ++) {
+                int xa = x + xp;
+                if (xa < -p.getSize() || xa >= width || ya < 0 || ya >= height) break;
+                if (xa <0) xa = 0;
+                int col = p.getSprite().pixels[x + y * p.getSprite().SIZE];
+                if (col != 0xffff00ff) pixels[xa + ya * width] = col;
             }
         }
     }
