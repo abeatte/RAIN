@@ -18,8 +18,11 @@ public class Sprite {
 
     // Spawn Level Sprites here:
     public static Sprite spawn_grass = new Sprite(16, 0, 0, SpriteSheet.spawn_level);
-    public static Sprite spawn_flower = new Sprite(16, 1, 0, SpriteSheet.spawn_level);
-    public static Sprite spawn_rock = new Sprite(16, 2, 0, SpriteSheet.spawn_level);
+    public static Sprite spawn_hedge = new Sprite(16, 1, 0, SpriteSheet.spawn_level);
+    public static Sprite spawn_water = new Sprite(16, 2, 0, SpriteSheet.spawn_level);
+    public static Sprite spawn_wall1 = new Sprite(16, 0, 1, SpriteSheet.spawn_level);
+    public static Sprite spawn_wall2 = new Sprite(16, 0, 2, SpriteSheet.spawn_level);
+    public static Sprite spawn_floor = new Sprite(16, 1, 1, SpriteSheet.spawn_level);
 
     // Player Sprites here:
     public static Sprite player_forward = new Sprite(32, 0, 5, SpriteSheet.tiles);
