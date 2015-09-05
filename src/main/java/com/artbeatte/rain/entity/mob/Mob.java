@@ -1,7 +1,12 @@
 package com.artbeatte.rain.entity.mob;
 
 import com.artbeatte.rain.entity.Entity;
+import com.artbeatte.rain.entity.projectile.Projectile;
+import com.artbeatte.rain.entity.projectile.WizardProjectile;
 import com.artbeatte.rain.graphics.Sprite;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author art.beatte
@@ -10,8 +15,11 @@ import com.artbeatte.rain.graphics.Sprite;
 public abstract class Mob extends Entity {
 
     protected Sprite sprite;
-    protected int dir = -1;
+    protected int dir = 0;
     protected boolean moving = false;
+    protected boolean walking = false;
+
+    protected List<Projectile> projectiles = new ArrayList<Projectile>();
 
     public void move(int xa, int ya) {
         if (xa != 0 && ya != 0) {
@@ -35,6 +43,9 @@ public abstract class Mob extends Entity {
     }
 
     protected void shoot(int x, int y, double dir) {
+        Projectile p = new WizardProjectile(x, y, dir);
+        projectiles.add(p);
+        level.add(p);
     }
 
     private boolean collision(int xa, int ya) {
